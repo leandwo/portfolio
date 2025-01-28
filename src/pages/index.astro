@@ -1,11 +1,48 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
 
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
 // Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
 <Layout>
-	<Welcome />
+	<Header />
+	<main class="">
+		<section class="py-8 my-8 border-b dark:border-zinc-800">
+			<h1 class="dark:text-zinc-100 font-bold">Leandro Solidum</h1>
+			<p class="dark:text-zinc-400">Leetcoder & Full Snack Developer</p>
+		</section>
+		<section>
+			<p class="dark:text-zinc-400">
+				I love writing code and building stunning, highly performant and
+				functional user experiences. Lately I've been working with tools
+				like
+
+				<a
+					href="https://astro.build/"
+					rel="noopener noreferrer"
+					target="_blank"
+					class="underline hover:text-sky-500">Astro</a
+				>
+				and
+				<a
+					href="https://tailwindcss.com/"
+					rel="noopener noreferrer"
+					target="_blank"
+					class="underline hover:text-sky-500">Tailwind CSS</a
+				>
+
+				creating sleek websites and landing pages.
+				<span class="mt-4 block"></span>
+				I love exploring new technologies and pushing boundaries. Let’s create
+				something amazing together!
+			</p>
+			<div class="mt-6">
+				<a class="border-2 rounded-md inline-flex whitespace-nowrap bg-zinc/90 px-10 py-2.5 text-sm font-medium tracking-tight text-zinc-500 transition-all hover:border-zinc-900/70 hover:bg-zinc/90 hover:text-zinc-900 dark:border-zinc-700/80 dark:bg-transparent dark:text-zinc-300 dark:hover:border-zinc-200/30 dark:hover:bg-zinc-900/80 dark:hover:text-zinc-50 md:px-12" href="mailto:hi@leandro.codes">Let's Work</a>
+			</div>
+		</section>
+	</main>
+	<Footer />
 </Layout>
