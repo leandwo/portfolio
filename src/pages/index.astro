@@ -3,44 +3,120 @@ import Layout from "../layouts/Layout.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const projects = [
+  // {
+  //   name: "Project Name",
+  //   description: "What it does and why it matters.",
+  //   tech: ["React", "Node"],
+  //   url: "https://...",
+  //   repo: "https://github.com/...",
+  // },
+];
+
+const tools = [
+  {
+    name: "Song Prep",
+    description: "Paste a ChordPro file, pick your transforms, get clean lyrics ready for ProPresenter or any worship display.",
+    url: "https://song-prep.ko.church",
+  },
+];
 ---
 
 <Layout>
   <Header />
-  <main class="">
-    <section class="py-4 mt-8 border-b dark:border-zinc-800 grid grid-cols-2">
-      <div>
-        <h1 class="dark:text-zinc-100 font-bold">Leandro Solidum</h1>
-        <p class="dark:text-zinc-400">Follower of Jesus</p>
-      </div>
-      <div class="text-5xl pl-1 leading-4 text-right align-middle grid items-center">
-		🕊️
-      </div>
-    </section>
-    <section>
-      <p class="dark:text-zinc-400">
-        I believe Jesus Christ is the Son of God, that he died for our sins and rose from the dead, and that salvation is a gift of grace - not something we earn.
-        <span class="mt-4 block"></span>
-        If you’ve ever wondered what Christians actually believe — beyond church, politics, or tradition — 
-         <a
+  <main>
+    <!-- Hero -->
+    <section class="mt-16 mb-12">
+      <p class="text-xs font-semibold uppercase tracking-widest dark:text-sky-400 mb-4">Available for projects</p>
+      <h1 class="text-2xl font-bold dark:text-zinc-100 leading-snug">
+        Leandro Solidum
+      </h1>
+      <p class="mt-2 dark:text-zinc-400 leading-relaxed">
+        I build websites, apps, and AI automations — mostly for churches and small businesses.
+        I care about shipping things that actually work and are worth using.
+      </p>
+      <p class="mt-3 text-sm dark:text-zinc-600 leading-relaxed">
+        I'm a Christian first. If you're curious what that means beyond the cultural noise,
+        <a
           href="https://twowaystolive.com/"
           rel="noopener noreferrer"
           target="_blank"
-          class="underline hover:text-sky-500">
-          this visual guide</a> 
-         explains the message at the heart of Christianity.
+          class="dark:text-zinc-500 hover:dark:text-sky-400 underline underline-offset-2 transition-colors">
+          this is a good place to start</a>.
       </p>
       <div class="mt-6">
         <a
-          class="flex items-center justify-items-center align-middle border-2 rounded-md inline-flex whitespace-nowrap bg-zinc/90 px-8 py-2.5 text-sm font-medium tracking-tight text-zinc-500 transition-all hover:border-zinc-900/70 hover:bg-zinc/90 hover:text-zinc-900 dark:border-zinc-700/80 dark:bg-transparent dark:text-zinc-300 dark:hover:border-zinc-200/30 dark:hover:bg-zinc-900/80 dark:hover:text-zinc-50 md:px-8"
           href="mailto:hi@leandro.codes"
+          class="inline-flex items-center gap-2 text-sm font-medium dark:text-sky-400 dark:hover:text-sky-300 transition-colors"
         >
-          <span class="text-2xl pr-2">✉️</span>
-          <span>Ask Me Anything</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          hi@leandro.codes
         </a>
       </div>
+    </section>
+
+    <!-- Projects -->
+    <section class="mb-12">
+      <h2 class="text-xs font-semibold uppercase tracking-widest dark:text-zinc-500 mb-4">Projects</h2>
+      {projects.length === 0 ? (
+        <div class="rounded-lg border border-dashed dark:border-zinc-800 p-10 flex items-center justify-center">
+          <p class="text-xs dark:text-zinc-700 tracking-wide uppercase">Coming soon</p>
+        </div>
+      ) : (
+        <div class="flex flex-col gap-4">
+          {projects.map((project) => (
+            <div class="rounded-lg dark:bg-zinc-800/40 border dark:border-zinc-800 p-5 group">
+              <div class="flex items-start justify-between gap-4">
+                <div>
+                  <p class="font-medium dark:text-zinc-100">{project.name}</p>
+                  <p class="text-sm dark:text-zinc-400 mt-1 leading-relaxed">{project.description}</p>
+                  <div class="flex flex-wrap gap-1 mt-3">
+                    {project.tech.map((t) => (
+                      <span class="text-xs px-2 py-0.5 rounded dark:bg-zinc-800 dark:text-sky-400 border dark:border-zinc-700/60">{t}</span>
+                    ))}
+                  </div>
+                </div>
+                <div class="flex gap-3 shrink-0 pt-0.5">
+                  {project.repo && (
+                    <a href={project.repo} target="_blank" rel="noopener noreferrer" class="text-xs dark:text-zinc-500 dark:hover:text-zinc-300 transition-colors">Code</a>
+                  )}
+                  {project.url && (
+                    <a href={project.url} target="_blank" rel="noopener noreferrer" class="text-xs dark:text-sky-400 dark:hover:text-sky-300 transition-colors">Live ↗</a>
+                  )}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+    </section>
+
+    <!-- Prototypes -->
+    <section class="mb-12">
+      <h2 class="text-xs font-semibold uppercase tracking-widest dark:text-zinc-500 mb-4">Tools</h2>
+      {tools.length === 0 ? (
+        <div class="rounded-lg border border-dashed dark:border-zinc-800 p-10 flex items-center justify-center">
+          <p class="text-xs dark:text-zinc-700 tracking-wide uppercase">Coming soon</p>
+        </div>
+      ) : (
+        <div class="divide-y dark:divide-zinc-800/60">
+          {tools.map((tool) => (
+            <div class="py-3 flex items-baseline justify-between gap-4">
+              <div class="min-w-0">
+                {tool.url ? (
+                  <a href={tool.url} target="_blank" rel="noopener noreferrer" class="text-sm font-medium dark:text-zinc-100 dark:hover:text-sky-400 transition-colors">{tool.name}</a>
+                ) : (
+                  <span class="text-sm font-medium dark:text-zinc-100">{tool.name}</span>
+                )}
+                <span class="text-sm dark:text-zinc-500 ml-2">{tool.description}</span>
+              </div>
+              {tool.url && (
+                <a href={tool.url} target="_blank" rel="noopener noreferrer" class="text-xs dark:text-sky-400 dark:hover:text-sky-300 transition-colors shrink-0">↗</a>
+              )}
+            </div>
+          ))}
+        </div>
+      )}
     </section>
   </main>
   <Footer />
