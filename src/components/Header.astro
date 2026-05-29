@@ -2,8 +2,14 @@
 import ThemeToggle from './ThemeToggle.astro';
 ---
 <header class="flex items-center justify-between pt-4 pb-2">
-  <a href="/" class="text-sm font-semibold text-zinc-800 dark:text-zinc-200 hover:text-zinc-500 dark:hover:text-zinc-400 transition-colors tracking-tight">
-    Leandro's Portfolio
-  </a>
+  <div class="flex items-center gap-2">
+    <span class="relative flex h-2 w-2">
+      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+      <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+    </span>
+    <a href="/" class="text-sm font-semibold text-zinc-800 dark:text-zinc-200 hover:text-zinc-500 dark:hover:text-zinc-400 transition-colors tracking-tight">
+      <span class="text-xs text-zinc-400 dark:text-zinc-500 tracking-wide">Available for projects</span>
+    </a>
+  </div>
   <ThemeToggle />
 </header>
