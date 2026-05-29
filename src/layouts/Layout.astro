@@ -9,6 +9,14 @@ import '../styles/tailwind.css'
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 		<title>Leandro Solidum</title>
+		<script is:inline>
+			(function () {
+				var t = localStorage.getItem('theme') || 'system';
+				if (t === 'dark' || (t === 'system' && matchMedia('(prefers-color-scheme: dark)').matches)) {
+					document.documentElement.classList.add('dark');
+				}
+			})();
+		</script>
 	</head>
 	<body class="flex h-full bg-white flex-col dark:bg-zinc-900">
 		<div class="w-full max-w-xl mx-auto p-4">

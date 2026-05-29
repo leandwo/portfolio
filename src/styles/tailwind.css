@@ -1,6 +1,5 @@
 @import 'tailwindcss';
 
-@variant dark (@media (prefers-color-scheme: dark));
 
 /* Register your custom font family and tell the browser where to find it. */
 @font-face {

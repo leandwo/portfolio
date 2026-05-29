@@ -1,0 +1,66 @@
+---
+---
+<div class="flex items-center gap-0.5 rounded-lg border border-zinc-200 dark:border-zinc-700 p-0.5">
+  <button data-theme-btn="light" title="Light" class="theme-btn p-1.5 rounded-md transition-colors">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <circle cx="12" cy="12" r="4"/>
+      <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
+    </svg>
+    <span class="sr-only">Light</span>
+  </button>
+  <button data-theme-btn="system" title="System" class="theme-btn p-1.5 rounded-md transition-colors">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <rect width="20" height="14" x="2" y="3" rx="2"/>
+      <path d="M8 21h8M12 17v4"/>
+    </svg>
+    <span class="sr-only">System</span>
+  </button>
+  <button data-theme-btn="dark" title="Dark" class="theme-btn p-1.5 rounded-md transition-colors">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+    </svg>
+    <span class="sr-only">Dark</span>
+  </button>
+</div>
+
+<style>
+  .theme-btn { color: #a1a1aa; }
+  .theme-btn:hover { color: #52525b; }
+  .dark .theme-btn { color: #71717a; }
+  .dark .theme-btn:hover { color: #d4d4d8; }
+  .theme-btn.is-active { background-color: #f4f4f5; color: #18181b; }
+  .dark .theme-btn.is-active { background-color: #3f3f46; color: #f4f4f5; }
+</style>
+
+<script>
+  const buttons = document.querySelectorAll<HTMLButtonElement>('[data-theme-btn]');
+  const html = document.documentElement;
+
+  function stored(): string {
+    return localStorage.getItem('theme') || 'system';
+  }
+
+  function apply(theme: string) {
+    const dark = theme === 'dark' || (theme === 'system' && matchMedia('(prefers-color-scheme: dark)').matches);
+    html.classList.toggle('dark', dark);
+  }
+
+  function mark(theme: string) {
+    buttons.forEach(btn => btn.classList.toggle('is-active', btn.dataset.themeBtn === theme));
+  }
+
+  mark(stored());
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const theme = btn.dataset.themeBtn!;
+      localStorage.setItem('theme', theme);
+      apply(theme);
+      mark(theme);
+    });
+  });
+
+  matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+    if (stored() === 'system') apply('system');
+  });
+</script>
