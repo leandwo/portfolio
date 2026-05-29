@@ -1,5 +1,6 @@
 @import 'tailwindcss';
 
+@variant dark (&:where(.dark, .dark *));
 
 /* Register your custom font family and tell the browser where to find it. */
 @font-face {
