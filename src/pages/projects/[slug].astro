@@ -1,0 +1,126 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+
+export async function getStaticPaths() {
+  const projects = await getCollection('projects');
+  return projects.map(p => ({ params: { slug: p.slug }, props: { project: p } }));
+}
+
+const { project } = Astro.props;
+const { name, tagline, tech, url, repo, status, images, problem, decisions, challenges, next } = project.data;
+
+const statusLabel = { live: 'Live', wip: 'In progress', private: 'Private' }[status];
+const statusClass = {
+  live: 'bg-emerald-50 text-emerald-600 border-emerald-200 dark:bg-emerald-950/30 dark:text-emerald-400 dark:border-emerald-900/50',
+  wip: 'bg-amber-50 text-amber-600 border-amber-200 dark:bg-amber-950/30 dark:text-amber-400 dark:border-amber-900/50',
+  private: 'bg-zinc-100 text-zinc-500 border-zinc-200 dark:bg-zinc-800 dark:text-zinc-400 dark:border-zinc-700',
+}[status];
+---
+
+<Layout title={name}>
+  <Header />
+  <main>
+
+    <div class="mt-8 mb-8">
+      <a href="/" class="text-sm text-zinc-400 hover:text-zinc-600 dark:text-zinc-500 dark:hover:text-zinc-300 transition-colors">
+        ← Projects
+      </a>
+    </div>
+
+    <!-- Hero -->
+    <section class="mb-10">
+      <div class="flex items-center gap-2 mb-4">
+        <span class={`text-xs px-2.5 py-0.5 rounded-full font-medium border ${statusClass}`}>
+          {statusLabel}
+        </span>
+      </div>
+      <h1 class="text-3xl font-bold text-zinc-900 dark:text-zinc-50 leading-tight tracking-tight mb-2">
+        {name}
+      </h1>
+      <p class="text-lg text-zinc-500 dark:text-zinc-400 leading-relaxed mb-5">
+        {tagline}
+      </p>
+      <div class="flex flex-wrap gap-1.5 mb-5">
+        {tech.map(t => (
+          <span class="text-xs px-2 py-0.5 rounded-md bg-zinc-100 text-zinc-500 border border-zinc-200 dark:bg-zinc-800/60 dark:text-zinc-400 dark:border-zinc-700/40">
+            {t}
+          </span>
+        ))}
+      </div>
+      <div class="flex gap-2.5">
+        {url && (
+          <a href={url} target="_blank" rel="noopener noreferrer" class="flex items-center gap-1 text-sm font-medium border border-sky-200 bg-sky-50 text-sky-600 hover:bg-sky-100 dark:border-sky-900/60 dark:bg-sky-950/20 dark:text-sky-400 dark:hover:bg-sky-950/40 px-3 py-1.5 rounded-full transition-colors">
+            Live ↗
+          </a>
+        )}
+        {repo && (
+          <a href={repo} target="_blank" rel="noopener noreferrer" class="flex items-center gap-1.5 text-sm font-medium border border-zinc-200 bg-white text-zinc-600 hover:bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-800/40 dark:text-zinc-300 dark:hover:bg-zinc-800 px-3 py-1.5 rounded-full transition-colors">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+            Source
+          </a>
+        )}
+      </div>
+    </section>
+
+    <!-- Images -->
+    {images.length > 0 && (
+      <section class="mb-10">
+        <div class="grid gap-3 grid-cols-1 sm:grid-cols-2">
+          {images.map(src => (
+            <img
+              src={src}
+              alt=""
+              class="rounded-xl border border-zinc-200 dark:border-zinc-800 w-full object-cover"
+            />
+          ))}
+        </div>
+      </section>
+    )}
+
+    <div class="flex flex-col gap-8 mb-12">
+
+      <!-- Problem -->
+      <section>
+        <h2 class="text-xs font-semibold uppercase tracking-widest text-zinc-400 dark:text-zinc-500 mb-3">The problem</h2>
+        <p class="text-zinc-600 dark:text-zinc-300 leading-relaxed">{problem}</p>
+      </section>
+
+      <!-- Technical decisions -->
+      {decisions.length > 0 && (
+        <section>
+          <h2 class="text-xs font-semibold uppercase tracking-widest text-zinc-400 dark:text-zinc-500 mb-3">Technical decisions</h2>
+          <div class="flex flex-col gap-3">
+            {decisions.map(d => (
+              <div class="rounded-xl border border-zinc-200 bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-800/20 p-4">
+                <p class="text-sm font-semibold text-zinc-800 dark:text-zinc-200 mb-1.5">{d.title}</p>
+                <p class="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed">{d.body}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
+      <!-- Challenges -->
+      {challenges && (
+        <section>
+          <h2 class="text-xs font-semibold uppercase tracking-widest text-zinc-400 dark:text-zinc-500 mb-3">What was hard</h2>
+          <p class="text-zinc-600 dark:text-zinc-300 leading-relaxed">{challenges}</p>
+        </section>
+      )}
+
+      <!-- Next -->
+      {next && (
+        <section>
+          <h2 class="text-xs font-semibold uppercase tracking-widest text-zinc-400 dark:text-zinc-500 mb-3">What's next</h2>
+          <p class="text-zinc-600 dark:text-zinc-300 leading-relaxed">{next}</p>
+        </section>
+      )}
+
+    </div>
+
+  </main>
+  <Footer />
+</Layout>

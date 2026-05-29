@@ -2,38 +2,10 @@
 import Layout from "../layouts/Layout.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+import { getCollection } from 'astro:content';
 
-const projects = [
-  {
-    name: "Koinonia Church",
-    description: "Official website for Koinonia Church in Mount Vernon, WA.",
-    tech: ["Astro", "Tailwind CSS", "Cloudflare Pages"],
-    url: "https://ko.church",
-    repo: "https://github.com/leandwo/ko-church",
-  },
-  {
-    name: "Woodshed",
-    description: "Offline-first PWA for worship drummers to import songs, build drum patterns, and practice sequences with synthesized audio playback.",
-    tech: ["React Router v7", "Web Audio API", "IndexedDB", "Cloudflare Pages"],
-    url: "https://woodshed.ko.church",
-  },
-  {
-    name: "Church Inventory",
-    description: "Asset tracker for church gear — instruments, AV equipment, consumables, and furniture — with dashboard, search, and persistent storage.",
-    tech: ["SolidJS", "Tailwind CSS", "Cloudflare D1"],
-    url: "https://inventory.ko.church",
-  },
-  {
-    name: "Berith",
-    description: "Full-stack wedding planner with guest management, seating charts, budgeting, timeline, vendor tracking, and a public RSVP page with invite tokens.",
-    tech: ["SolidJS", "Cloudflare Workers", "Cloudflare D1"],
-  },
-  {
-    name: "Pilgrim's Progress",
-    description: "Cross-platform mobile app for tracking spiritual progress, built with Expo and offline-first SQLite storage.",
-    tech: ["Expo", "React Native", "TypeScript", "SQLite", "NativeWind"],
-  },
-];
+const allProjects = await getCollection('projects');
+const projects = allProjects.sort((a, b) => a.data.order - b.data.order);
 
 const tools = [
   {
@@ -75,31 +47,33 @@ const tools = [
       ) : (
         <div class="flex flex-col gap-3">
           {projects.map((project) => (
-            <div class="relative rounded-xl bg-white border border-zinc-200 dark:bg-zinc-800/40 dark:border-zinc-800 p-5 group transition-all duration-200 hover:border-zinc-300 dark:hover:border-zinc-700/80 overflow-hidden">
+            <div class="relative rounded-xl bg-white border border-zinc-200 dark:bg-zinc-800/40 dark:border-zinc-800 p-5 group transition-all duration-200 hover:border-zinc-300 dark:hover:border-zinc-700/80 overflow-hidden cursor-pointer">
               <div class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-sky-400/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              <div class="flex items-start justify-between gap-4">
+              {/* Stretched link covers the whole card */}
+              <a href={`/projects/${project.slug}`} class="absolute inset-0 rounded-xl" aria-label={`View ${project.data.name} project`}></a>
+              <div class="relative flex items-start justify-between gap-4">
                 <div>
-                  <p class="font-semibold text-zinc-900 dark:text-zinc-100">{project.name}</p>
-                  <p class="text-sm text-zinc-500 dark:text-zinc-400 mt-1 leading-relaxed">{project.description}</p>
-                  <div class="flex items-center gap-3 mt-3 group/repo">
-                    <div class="flex flex-wrap gap-1">
-                      {project.tech.map((t) => (
-                        <span class="text-xs px-2 py-0.5 rounded-md bg-zinc-100 text-zinc-500 border border-zinc-200 dark:bg-zinc-800/60 dark:text-zinc-500 dark:border-zinc-700/40 transition-colors group-hover/repo:text-zinc-700 group-hover/repo:border-zinc-300 group-hover/repo:dark:text-zinc-400 group-hover/repo:dark:border-zinc-600/60">{t}</span>
-                      ))}
-                    </div>
-                    {project.repo && (
-                      <a href={project.repo} target="_blank" rel="noopener noreferrer" class="opacity-0 group-hover/repo:opacity-100 transition-opacity flex items-center gap-1 text-xs text-zinc-400 hover:text-zinc-600 dark:text-zinc-500 dark:hover:text-zinc-300">
-                        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
-                        Source
-                      </a>
-                    )}
+                  <p class="font-semibold text-zinc-900 dark:text-zinc-100 group-hover:text-sky-600 dark:group-hover:text-sky-400 transition-colors">{project.data.name}</p>
+                  <p class="text-sm text-zinc-500 dark:text-zinc-400 mt-1 leading-relaxed">{project.data.description}</p>
+                  <div class="flex flex-wrap gap-1 mt-3">
+                    {project.data.tech.map((t) => (
+                      <span class="text-xs px-2 py-0.5 rounded-md bg-zinc-100 text-zinc-500 border border-zinc-200 dark:bg-zinc-800/60 dark:text-zinc-500 dark:border-zinc-700/40">{t}</span>
+                    ))}
                   </div>
                 </div>
-                <div class="shrink-0 pt-0.5">
-                  {project.url && (
-                    <a href={project.url} target="_blank" rel="noopener noreferrer" class="flex items-center gap-1 text-xs font-medium border border-sky-200 bg-sky-50 text-sky-600 hover:bg-sky-100 dark:border-sky-900/60 dark:bg-sky-950/20 dark:text-sky-400 dark:hover:bg-sky-950/40 px-2.5 py-1 rounded-full transition-colors">
+                <div class="relative z-10 shrink-0 flex flex-col items-end gap-2 pt-0.5">
+                  {project.data.url ? (
+                    <a href={project.data.url} target="_blank" rel="noopener noreferrer" class="flex items-center gap-1 text-xs font-medium border border-sky-200 bg-sky-50 text-sky-600 hover:bg-sky-100 dark:border-sky-900/60 dark:bg-sky-950/20 dark:text-sky-400 dark:hover:bg-sky-950/40 px-2.5 py-1 rounded-full transition-colors">
                       Live ↗
                     </a>
+                  ) : (
+                    <span class={`text-xs px-2 py-0.5 rounded-full border font-medium ${
+                      project.data.status === 'wip'
+                        ? 'bg-amber-50 text-amber-600 border-amber-200 dark:bg-amber-950/30 dark:text-amber-400 dark:border-amber-900/50'
+                        : 'bg-zinc-100 text-zinc-500 border-zinc-200 dark:bg-zinc-800 dark:text-zinc-400 dark:border-zinc-700'
+                    }`}>
+                      {project.data.status === 'wip' ? 'In progress' : 'Private'}
+                    </span>
                   )}
                 </div>
               </div>
