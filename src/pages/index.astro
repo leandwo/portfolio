@@ -49,6 +49,12 @@ const tools = [
                 <div>
                   <p class="font-semibold text-zinc-900 dark:text-zinc-100 group-hover:text-sky-600 dark:group-hover:text-sky-400 transition-colors">{project.data.name}</p>
                   <p class="text-sm text-zinc-500 dark:text-zinc-400 mt-1 leading-relaxed">{project.data.description}</p>
+                  <a
+                    href={`/projects/${project.slug}`}
+                    class="inline-block mt-2 text-xs font-medium text-zinc-400 hover:text-sky-500 dark:text-zinc-500 dark:hover:text-sky-400 transition-colors"
+                  >
+                    See what it does →
+                  </a>
                 </div>
                 <div class="shrink-0 flex flex-col items-end gap-2 pt-0.5">
                   {project.data.url && (
@@ -66,25 +72,6 @@ const tools = [
                     </span>
                   )}
                 </div>
-              </div>
-              <div class="mt-4 pt-3.5 border-t border-zinc-100 dark:border-zinc-800/80 flex items-center justify-between">
-                <div class="flex items-center gap-1.5">
-                  {project.data.status !== 'live' && (
-                    <span class={`text-xs px-2 py-0.5 rounded-full border font-medium ${
-                      project.data.status === 'wip'
-                        ? 'bg-amber-50 text-amber-600 border-amber-200 dark:bg-amber-950/30 dark:text-amber-400 dark:border-amber-900/50'
-                        : 'bg-zinc-100 text-zinc-500 border-zinc-200 dark:bg-zinc-800 dark:text-zinc-400 dark:border-zinc-700'
-                    }`}>
-                      {project.data.status === 'wip' ? 'In progress' : 'Private'}
-                    </span>
-                  )}
-                </div>
-                <a
-                  href={`/projects/${project.slug}`}
-                  class="flex items-center gap-1 text-xs font-medium text-zinc-400 hover:text-sky-500 dark:text-zinc-500 dark:hover:text-sky-400 transition-colors"
-                >
-                  See what it does →
-                </a>
               </div>
             </div>
           ))}
