@@ -6,7 +6,7 @@ tech: ["SolidJS", "Cloudflare Workers", "Cloudflare D1"]
 status: wip
 order: 4
 images: []
-overview: Wedding planning is spread across a dozen tools that don't talk to each other. Berith pulls it all into one place — from the guest list to the seating chart to the day-of timeline — so couples can actually enjoy the planning process instead of managing spreadsheets.
+overview: Wedding planning is spread across a dozen tools that don't talk to each other. Berith pulls it all into one place, from the guest list to the seating chart to the day-of timeline, so couples can actually enjoy the planning process instead of managing spreadsheets.
 features:
   - title: Guest management
     description: Add guests, track RSVPs, meal selections, and dietary needs. Always know exactly who's coming.
@@ -19,6 +19,6 @@ features:
   - title: Day-of timeline
     description: Build out the full schedule from getting ready to the last dance. Share it with your wedding party.
   - title: Public RSVP page
-    description: Guests get a unique invite link. They click, confirm their attendance and meal — no account needed.
+    description: Guests get a unique invite link. They click, confirm their attendance and meal. No account needed.
 next: Send invites directly from the app, vendor payment reminders, a shareable timeline for the wedding party.
 ---

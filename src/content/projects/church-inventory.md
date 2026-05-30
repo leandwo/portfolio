@@ -1,16 +1,16 @@
 ---
 name: Church Inventory
 tagline: Tracks what your church owns so nothing disappears unnoticed.
-description: Asset tracker for church gear — instruments, AV equipment, consumables, and furniture — with dashboard, search, and persistent storage.
+description: Asset tracker for church gear: instruments, AV equipment, consumables, and furniture. Dashboard, search, and persistent storage.
 tech: ["SolidJS", "Tailwind CSS", "Cloudflare D1"]
 url: https://inventory.ko.church
 status: wip
 order: 3
 images: []
-overview: A simple asset tracker built for the people who set up and tear down every Sunday. Most churches manage their gear in a spreadsheet — or don't track it at all. Church Inventory makes it easy to know exactly what you own, what condition it's in, and what needs attention.
+overview: A simple asset tracker built for the people who set up and tear down every Sunday. Most churches manage their gear in a spreadsheet, or they don't track it at all. Church Inventory makes it easy to know exactly what you own, what condition it's in, and what needs attention.
 features:
   - title: Asset catalog
-    description: Add any piece of gear — instruments, cables, mics, projectors, furniture. Anything the church owns.
+    description: Add any piece of gear: instruments, cables, mics, projectors, furniture. Anything the church owns.
   - title: Categories & tags
     description: Organize gear by type so you can find what you're looking for without scrolling through everything.
   - title: Condition tracking
@@ -18,7 +18,7 @@ features:
   - title: Quick search
     description: Find any item instantly. Search by name, category, or notes.
   - title: Dashboard
-    description: A summary view of your full inventory — counts by category, items flagged for attention.
+    description: A summary view of your full inventory: counts by category, items flagged for attention.
   - title: Cloud storage
     description: Data lives in the cloud. Access it from any device, share it with your team.
 next: Check-out/check-in so you know who has what gear, maintenance reminders, multi-campus support.
