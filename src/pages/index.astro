@@ -49,11 +49,6 @@ const tools = [
                 <div>
                   <p class="font-semibold text-zinc-900 dark:text-zinc-100 group-hover:text-sky-600 dark:group-hover:text-sky-400 transition-colors">{project.data.name}</p>
                   <p class="text-sm text-zinc-500 dark:text-zinc-400 mt-1 leading-relaxed">{project.data.description}</p>
-                  <div class="flex flex-wrap gap-1 mt-3">
-                    {project.data.tech.map((t) => (
-                      <span class="text-xs px-2 py-0.5 rounded-md bg-zinc-100 text-zinc-500 border border-zinc-200 dark:bg-zinc-800/60 dark:text-zinc-500 dark:border-zinc-700/40">{t}</span>
-                    ))}
-                  </div>
                 </div>
                 <div class="shrink-0 flex flex-col items-end gap-2 pt-0.5">
                   {project.data.url && (
@@ -88,7 +83,7 @@ const tools = [
                   href={`/projects/${project.slug}`}
                   class="flex items-center gap-1 text-xs font-medium text-zinc-400 hover:text-sky-500 dark:text-zinc-500 dark:hover:text-sky-400 transition-colors"
                 >
-                  Details →
+                  See what it does →
                 </a>
               </div>
             </div>
