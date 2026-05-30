@@ -25,19 +25,19 @@ const statusClass = {
   <main>
 
     <div class="mt-8 mb-8">
-      <a href="/" class="text-sm text-zinc-400 hover:text-zinc-600 dark:text-zinc-500 dark:hover:text-zinc-300 transition-colors">
+      <a href="/" data-astro-history="back" class="text-sm text-zinc-400 hover:text-zinc-600 dark:text-zinc-500 dark:hover:text-zinc-300 transition-colors">
         ← Projects
       </a>
     </div>
 
     <!-- Hero -->
-    <section class="mb-10">
+    <section transition:name={`card-${project.slug}`} class="mb-10">
       <div class="flex items-center gap-2 mb-4">
         <span class={`text-xs px-2.5 py-0.5 rounded-full font-medium border ${statusClass}`}>
           {statusLabel}
         </span>
       </div>
-      <h1 class="text-3xl font-bold text-zinc-900 dark:text-zinc-50 leading-tight tracking-tight mb-2">
+      <h1 transition:name={`title-${project.slug}`} class="text-3xl font-bold text-zinc-900 dark:text-zinc-50 leading-tight tracking-tight mb-2">
         {name}
       </h1>
       <p class="text-lg text-zinc-500 dark:text-zinc-400 leading-relaxed mb-5">

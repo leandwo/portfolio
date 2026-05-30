@@ -1,7 +1,7 @@
 ---
 import ThemeToggle from './ThemeToggle.astro';
 ---
-<header class="flex items-center justify-between pt-4 pb-2">
+<header transition:persist transition:name="site-header" class="flex items-center justify-between pt-4 pb-2">
   <div class="flex items-center gap-2">
     <span class="relative flex h-2 w-2">
       <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
