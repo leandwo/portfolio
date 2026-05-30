@@ -24,7 +24,7 @@ const statusClass = {
   <Header />
   <main>
 
-    <div class="mt-8 mb-8">
+    <div class="mt-8 mb-8" style="animation: vt-content-in 0.35s cubic-bezier(0.4,0,0.2,1) both; animation-delay: 0.15s">
       <a href="/" data-astro-history="back" class="text-sm text-zinc-400 hover:text-zinc-600 dark:text-zinc-500 dark:hover:text-zinc-300 transition-colors">
         ← Projects
       </a>
@@ -67,7 +67,7 @@ const statusClass = {
 
     <!-- Images -->
     {images.length > 0 && (
-      <section class="mb-10">
+      <section class="mb-10" style="animation: vt-content-in 0.4s cubic-bezier(0.4,0,0.2,1) both; animation-delay: 0.3s">
         <div class="grid gap-3 grid-cols-1 sm:grid-cols-2">
           {images.map(src => (
             <img src={src} alt="" class="rounded-xl border border-zinc-200 dark:border-zinc-800 w-full object-cover" />
@@ -79,14 +79,14 @@ const statusClass = {
     <div class="flex flex-col gap-10 mb-12">
 
       <!-- Overview -->
-      <section>
+      <section style="animation: vt-content-in 0.4s cubic-bezier(0.4,0,0.2,1) both; animation-delay: 0.3s">
         <h2 class="text-xs font-semibold uppercase tracking-widest text-zinc-400 dark:text-zinc-500 mb-3">Overview</h2>
         <p class="text-zinc-600 dark:text-zinc-300 leading-relaxed">{overview}</p>
       </section>
 
       <!-- Features -->
       {features.length > 0 && (
-        <section>
+        <section style="animation: vt-content-in 0.4s cubic-bezier(0.4,0,0.2,1) both; animation-delay: 0.42s">
           <h2 class="text-xs font-semibold uppercase tracking-widest text-zinc-400 dark:text-zinc-500 mb-4">Features</h2>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
             {features.map(f => (
@@ -101,7 +101,7 @@ const statusClass = {
 
       <!-- What's next -->
       {next && (
-        <section>
+        <section style="animation: vt-content-in 0.4s cubic-bezier(0.4,0,0.2,1) both; animation-delay: 0.54s">
           <h2 class="text-xs font-semibold uppercase tracking-widest text-zinc-400 dark:text-zinc-500 mb-3">What's next</h2>
           <p class="text-zinc-600 dark:text-zinc-300 leading-relaxed">{next}</p>
         </section>
