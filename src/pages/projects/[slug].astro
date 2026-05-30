@@ -10,7 +10,7 @@ export async function getStaticPaths() {
 }
 
 const { project } = Astro.props;
-const { name, tagline, tech, url, repo, status, images, problem, decisions, challenges, next } = project.data;
+const { name, tagline, tech, url, repo, status, images, overview, features, next } = project.data;
 
 const statusLabel = { live: 'Live', wip: 'In progress', private: 'Private' }[status];
 const statusClass = {
@@ -43,14 +43,7 @@ const statusClass = {
       <p class="text-lg text-zinc-500 dark:text-zinc-400 leading-relaxed mb-5">
         {tagline}
       </p>
-      <div class="flex flex-wrap gap-1.5 mb-5">
-        {tech.map(t => (
-          <span class="text-xs px-2 py-0.5 rounded-md bg-zinc-100 text-zinc-500 border border-zinc-200 dark:bg-zinc-800/60 dark:text-zinc-400 dark:border-zinc-700/40">
-            {t}
-          </span>
-        ))}
-      </div>
-      <div class="flex gap-2.5">
+      <div class="flex gap-2.5 mb-5">
         {url && (
           <a href={url} target="_blank" rel="noopener noreferrer" class="flex items-center gap-1 text-sm font-medium border border-sky-200 bg-sky-50 text-sky-600 hover:bg-sky-100 dark:border-sky-900/60 dark:bg-sky-950/20 dark:text-sky-400 dark:hover:bg-sky-950/40 px-3 py-1.5 rounded-full transition-colors">
             Live ↗
@@ -63,6 +56,13 @@ const statusClass = {
           </a>
         )}
       </div>
+      <div class="flex flex-wrap gap-1.5">
+        {tech.map(t => (
+          <span class="text-xs px-2 py-0.5 rounded-md bg-zinc-100 text-zinc-500 border border-zinc-200 dark:bg-zinc-800/60 dark:text-zinc-400 dark:border-zinc-700/40">
+            {t}
+          </span>
+        ))}
+      </div>
     </section>
 
     <!-- Images -->
@@ -70,48 +70,36 @@ const statusClass = {
       <section class="mb-10">
         <div class="grid gap-3 grid-cols-1 sm:grid-cols-2">
           {images.map(src => (
-            <img
-              src={src}
-              alt=""
-              class="rounded-xl border border-zinc-200 dark:border-zinc-800 w-full object-cover"
-            />
+            <img src={src} alt="" class="rounded-xl border border-zinc-200 dark:border-zinc-800 w-full object-cover" />
           ))}
         </div>
       </section>
     )}
 
-    <div class="flex flex-col gap-8 mb-12">
+    <div class="flex flex-col gap-10 mb-12">
 
-      <!-- Problem -->
+      <!-- Overview -->
       <section>
-        <h2 class="text-xs font-semibold uppercase tracking-widest text-zinc-400 dark:text-zinc-500 mb-3">The problem</h2>
-        <p class="text-zinc-600 dark:text-zinc-300 leading-relaxed">{problem}</p>
+        <h2 class="text-xs font-semibold uppercase tracking-widest text-zinc-400 dark:text-zinc-500 mb-3">Overview</h2>
+        <p class="text-zinc-600 dark:text-zinc-300 leading-relaxed">{overview}</p>
       </section>
 
-      <!-- Technical decisions -->
-      {decisions.length > 0 && (
+      <!-- Features -->
+      {features.length > 0 && (
         <section>
-          <h2 class="text-xs font-semibold uppercase tracking-widest text-zinc-400 dark:text-zinc-500 mb-3">Technical decisions</h2>
-          <div class="flex flex-col gap-3">
-            {decisions.map(d => (
-              <div class="rounded-xl border border-zinc-200 bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-800/20 p-4">
-                <p class="text-sm font-semibold text-zinc-800 dark:text-zinc-200 mb-1.5">{d.title}</p>
-                <p class="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed">{d.body}</p>
+          <h2 class="text-xs font-semibold uppercase tracking-widest text-zinc-400 dark:text-zinc-500 mb-4">Features</h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            {features.map(f => (
+              <div class="rounded-xl border border-zinc-200 bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-800/20 px-4 py-3.5">
+                <p class="text-sm font-semibold text-zinc-800 dark:text-zinc-200 mb-1">{f.title}</p>
+                <p class="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed">{f.description}</p>
               </div>
             ))}
           </div>
         </section>
       )}
 
-      <!-- Challenges -->
-      {challenges && (
-        <section>
-          <h2 class="text-xs font-semibold uppercase tracking-widest text-zinc-400 dark:text-zinc-500 mb-3">What was hard</h2>
-          <p class="text-zinc-600 dark:text-zinc-300 leading-relaxed">{challenges}</p>
-        </section>
-      )}
-
-      <!-- Next -->
+      <!-- What's next -->
       {next && (
         <section>
           <h2 class="text-xs font-semibold uppercase tracking-widest text-zinc-400 dark:text-zinc-500 mb-3">What's next</h2>

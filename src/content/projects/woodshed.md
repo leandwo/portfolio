@@ -7,14 +7,19 @@ url: https://woodshed.ko.church
 status: live
 order: 2
 images: []
-problem: Worship drummers don't learn from sheet music — they listen to a song, figure out the feel, and build a pattern that fits the arrangement. Existing tools are either too simple (metronomes) or too complex (DAWs). Woodshed is a middle ground built specifically for working through worship setlists, song by song, on your own schedule.
-decisions:
-  - title: Web Audio API for synthesized sound
-    body: Generating drum sounds through the Web Audio API means there's nothing to host, no audio files to load, and playback starts instantly. The tradeoff is that it sounds like a drum machine rather than a real kit — which is fine for a practice tool, and keeps the app completely self-contained.
-  - title: IndexedDB for all data
-    body: Every song, pattern, and setting lives in IndexedDB on the device. The app is fully offline-capable once loaded, which matters when you're practicing at church where the Wi-Fi is locked down or unreliable.
-  - title: PWA for installability
-    body: A web app manifest and service worker mean it can be added to the home screen and launched like a native app — no app store, no review process, no gatekeeping. Just a URL.
-challenges: Web Audio timing. The naive approach of scheduling beats with setTimeout produces a lurching, drift-prone rhythm at any tempo above 80 BPM. The fix is scheduling audio events ahead of time against the AudioContext clock, which runs independently of the main thread and JavaScript's event loop. Getting that right without introducing audible latency or skipped beats took several iterations and a lot of metronome comparisons.
+overview: Woodshed is a practice tool built specifically for worship drummers. Instead of a generic metronome or a DAW that's overkill, it gives you a focused place to work through your setlist — song by song, pattern by pattern — at your own pace and without needing an internet connection.
+features:
+  - title: Song library
+    description: Keep all your songs in one place. Add a new one in seconds and jump back to it anytime.
+  - title: Pattern builder
+    description: Build drum patterns bar by bar — kick, snare, hi-hat, and more. See and hear the full groove as you build it.
+  - title: Instant audio playback
+    description: Hear your patterns immediately with synthesized drum sounds. No audio files to load, no setup.
+  - title: Tempo control
+    description: Set your BPM, slow it down to learn a tricky section, then bring it back up to speed.
+  - title: Works offline
+    description: All your songs and patterns are stored on your device. Practice at church, at home, on a plane — no Wi-Fi needed.
+  - title: Installable
+    description: Add it to your home screen and launch it like a native app. No app store, no account.
 next: Import setlists directly from Planning Center, share patterns between band members, multiple kit sound options.
 ---

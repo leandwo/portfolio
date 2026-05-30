@@ -8,12 +8,19 @@ repo: https://github.com/leandwo/ko-church
 status: live
 order: 1
 images: []
-problem: Most church websites get updated twice a year, if that. Service times change, staff turns over, events come and go — but the website stays frozen. Koinonia needed something fast to load, easy to keep current, and cheap enough that a small church could actually afford it long-term.
-decisions:
-  - title: Astro over WordPress or a heavy CMS
-    body: Astro ships zero JavaScript by default, which means the site loads fast even on the spotty cell signal you get in some church parking lots. Content lives in Markdown files — simple enough for a non-developer to edit with a little guidance, and no database to secure or maintain.
-  - title: Cloudflare Pages for hosting
-    body: The free tier covers everything a local church website needs. Assets are served from Cloudflare's CDN edge worldwide, and deploys happen automatically on every git push. The church pays $0/month in infrastructure costs.
-challenges: Getting the design to feel warm and personal without becoming cluttered. Church websites tend to swing between corporate brochure and clip-art bulletin. The goal was something clean enough to feel credible but personal enough to actually represent the community.
-next: A lightweight CMS so staff can update service times, post announcements, and manage events without touching a file or asking a developer.
+overview: The official site for Koinonia Church in Mount Vernon, WA. Built to be fast, easy to maintain, and welcoming to anyone visiting for the first time — whether they're looking for service times, want to meet the team, or just want to know if this is a church for them.
+features:
+  - title: Service info
+    description: Times, location, and what to expect — everything a first-time visitor needs, front and center.
+  - title: Staff directory
+    description: Photos and short bios for the pastoral team so new visitors can put faces to names before they walk in the door.
+  - title: Mobile-first design
+    description: Looks and works great on any screen. Most people find a new church on their phone.
+  - title: Dark mode
+    description: Respects system preference automatically — no toggle needed.
+  - title: Fast by default
+    description: Ships zero JavaScript. Loads instantly, even on slow connections.
+  - title: Easy to update
+    description: Content lives in simple files — no database, no CMS login to forget, no plugins to update.
+next: A lightweight admin panel so staff can update service times and post announcements without touching a file.
 ---

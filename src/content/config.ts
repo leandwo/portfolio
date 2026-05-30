@@ -12,12 +12,11 @@ const projects = defineCollection({
     status: z.enum(['live', 'wip', 'private']).default('wip'),
     order: z.number().default(99),
     images: z.array(z.string()).default([]),
-    problem: z.string(),
-    decisions: z.array(z.object({
+    overview: z.string(),
+    features: z.array(z.object({
       title: z.string(),
-      body: z.string(),
+      description: z.string(),
     })).default([]),
-    challenges: z.string().optional(),
     next: z.string().optional(),
   }),
 });
