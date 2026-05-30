@@ -62,8 +62,19 @@ html[data-astro-transition=back]::view-transition-new(root) {
   animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Content stagger on detail page */
+/* Header stays static — no animation */
+::view-transition-group(site-header) {
+  animation: none;
+}
+
+/* Content stagger on detail page — drops in from above */
 @keyframes vt-content-in {
   from { opacity: 0; transform: translateY(-8px); }
   to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Back link slides in from the left */
+@keyframes vt-from-left {
+  from { opacity: 0; transform: translateX(-10px); }
+  to   { opacity: 1; transform: translateX(0); }
 }
