@@ -12,7 +12,7 @@ features:
   - title: Song library
     description: Keep all your songs in one place. Add a new one in seconds and jump back to it anytime.
   - title: Pattern builder
-    description: Build drum patterns bar by bar: kick, snare, hi-hat, and more. See and hear the full groove as you build it.
+    description: Build drum patterns bar by bar, with kick, snare, hi-hat, and more. See and hear the full groove as you build it.
   - title: Instant audio playback
     description: Hear your patterns immediately with synthesized drum sounds. No audio files to load, no setup.
   - title: Tempo control
