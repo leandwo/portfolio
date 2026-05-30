@@ -33,33 +33,35 @@
 </style>
 
 <script>
-  const buttons = document.querySelectorAll<HTMLButtonElement>('[data-theme-btn]');
-  const html = document.documentElement;
-
   function stored(): string {
     return localStorage.getItem('theme') || 'system';
   }
 
   function apply(theme: string) {
     const dark = theme === 'dark' || (theme === 'system' && matchMedia('(prefers-color-scheme: dark)').matches);
-    html.classList.toggle('dark', dark);
+    document.documentElement.classList.toggle('dark', dark);
   }
 
   function mark(theme: string) {
-    buttons.forEach(btn => btn.classList.toggle('is-active', btn.dataset.themeBtn === theme));
+    document.querySelectorAll<HTMLButtonElement>('[data-theme-btn]').forEach(btn => {
+      btn.classList.toggle('is-active', btn.dataset.themeBtn === theme);
+    });
   }
 
-  mark(stored());
-
-  buttons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const theme = btn.dataset.themeBtn!;
-      localStorage.setItem('theme', theme);
-      apply(theme);
-      mark(theme);
-    });
+  // Event delegation on document — survives View Transition navigations
+  document.addEventListener('click', (e) => {
+    const btn = (e.target as Element).closest<HTMLButtonElement>('[data-theme-btn]');
+    if (!btn) return;
+    const theme = btn.dataset.themeBtn!;
+    localStorage.setItem('theme', theme);
+    apply(theme);
+    mark(theme);
   });
 
+  // Re-mark active button after every navigation (fires on initial load too)
+  document.addEventListener('astro:page-load', () => mark(stored()));
+
+  // React to OS preference changes
   matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
     if (stored() === 'system') apply('system');
   });

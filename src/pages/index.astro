@@ -123,11 +123,13 @@ const tools = [
 </Layout>
 
 <script>
-  document.querySelectorAll<HTMLElement>('.project-card').forEach(card => {
-    card.addEventListener('click', e => {
-      if (!(e.target as Element).closest('a')) {
-        window.location.href = card.dataset.href!;
-      }
+  document.addEventListener('astro:page-load', () => {
+    document.querySelectorAll<HTMLElement>('.project-card').forEach(card => {
+      card.addEventListener('click', e => {
+        if (!(e.target as Element).closest('a')) {
+          window.location.href = card.dataset.href!;
+        }
+      });
     });
   });
 </script>
