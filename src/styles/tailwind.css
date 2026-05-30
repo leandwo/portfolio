@@ -34,19 +34,25 @@
   from { opacity: 0; transform: translateX(-18px); }
 }
 
-/* Forward: index → detail */
-html[data-astro-transition=forward]::view-transition-old(root) {
+/* Root never animates — only page-content does */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+}
+
+/* Forward: index → detail (page-content slides left) */
+html[data-astro-transition=forward]::view-transition-old(page-content) {
   animation: 0.3s cubic-bezier(0.4, 0, 0.2, 1) both vt-fade-out-left;
 }
-html[data-astro-transition=forward]::view-transition-new(root) {
+html[data-astro-transition=forward]::view-transition-new(page-content) {
   animation: 0.35s cubic-bezier(0.4, 0, 0.2, 1) both vt-fade-in-right;
 }
 
-/* Back: detail → index */
-html[data-astro-transition=back]::view-transition-old(root) {
+/* Back: detail → index (page-content slides right) */
+html[data-astro-transition=back]::view-transition-old(page-content) {
   animation: 0.3s cubic-bezier(0.4, 0, 0.2, 1) both vt-fade-out-right;
 }
-html[data-astro-transition=back]::view-transition-new(root) {
+html[data-astro-transition=back]::view-transition-new(page-content) {
   animation: 0.35s cubic-bezier(0.4, 0, 0.2, 1) both vt-fade-in-left;
 }
 
@@ -62,9 +68,9 @@ html[data-astro-transition=back]::view-transition-new(root) {
   animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Header stays static — no animation */
-::view-transition-group(site-header) {
-  animation: none;
+/* page-content group has no position change, skip the morph duration */
+::view-transition-group(page-content) {
+  animation-duration: 0s;
 }
 
 /* Content stagger on detail page — drops in from above */
