@@ -4,9 +4,9 @@ tagline: Tracks what your church owns so nothing disappears unnoticed.
 description: Asset tracker for church gear, including instruments, AV equipment, consumables, and furniture. Dashboard, search, and persistent storage.
 tech: ["SolidJS", "Tailwind CSS", "Cloudflare D1"]
 url: https://inventory.ko.church
-status: wip
+status: alpha
 order: 3
-images: []
+images: ["/screenshots/church-inventory-1.png", "/screenshots/church-inventory-2.png"]
 overview: A simple asset tracker built for the people who set up and tear down every Sunday. Most churches manage their gear in a spreadsheet, or they don't track it at all. Church Inventory makes it easy to know exactly what you own, what condition it's in, and what needs attention.
 features:
   - title: Asset catalog

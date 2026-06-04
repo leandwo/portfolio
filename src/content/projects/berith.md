@@ -3,9 +3,10 @@ name: Berith
 tagline: Wedding planning in one place instead of twelve.
 description: Full-stack wedding planner with guest management, seating charts, budgeting, timeline, vendor tracking, and a public RSVP page with invite tokens.
 tech: ["SolidJS", "Cloudflare Workers", "Cloudflare D1"]
-status: wip
+url: https://weddings.ko.church
+status: alpha
 order: 4
-images: []
+images: ["/screenshots/berith-1.png", "/screenshots/berith-2.png", "/screenshots/berith-3.png"]
 overview: Wedding planning is spread across a dozen tools that don't talk to each other. Berith pulls it all into one place, from the guest list to the seating chart to the day-of timeline, so couples can actually enjoy the planning process instead of managing spreadsheets.
 features:
   - title: Guest management

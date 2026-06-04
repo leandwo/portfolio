@@ -7,7 +7,7 @@ url: https://ko.church
 repo: https://github.com/leandwo/ko-church
 status: live
 order: 1
-images: []
+images: ["/screenshots/koinonia-church-1.png"]
 overview: The official site for Koinonia Church in Mount Vernon, WA. Built to be fast, easy to maintain, and welcoming to anyone visiting for the first time, whether they're looking for service times, want to meet the team, or just want to know if this is a church for them.
 features:
   - title: Service info

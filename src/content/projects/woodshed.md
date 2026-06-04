@@ -4,9 +4,9 @@ tagline: Practice tool for worship drummers who learn by ear, not sheet music.
 description: Offline-first PWA for worship drummers to import songs, build drum patterns, and practice sequences with synthesized audio playback.
 tech: ["React Router v7", "Web Audio API", "IndexedDB", "Cloudflare Pages"]
 url: https://woodshed.ko.church
-status: live
+status: alpha
 order: 2
-images: []
+images: ["/screenshots/woodshed-1.png", "/screenshots/woodshed-2.png"]
 overview: Woodshed is a practice tool built specifically for worship drummers. Instead of a generic metronome or a DAW that's overkill, it gives you a focused place to work through your setlist, song by song, pattern by pattern, at your own pace and without needing an internet connection.
 features:
   - title: Song library

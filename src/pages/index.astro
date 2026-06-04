@@ -6,7 +6,11 @@ import { getCollection } from 'astro:content';
 const allProjects = await getCollection('projects');
 const projects = allProjects.sort((a, b) => a.data.order - b.data.order);
 
-const tools = [
+const tools: { name: string; description: string; url?: string }[] = [
+  {
+    name: "RefTagger",
+    description: "Chrome extension that finds Bible references on any page and turns them into hover-preview links. Web Store listing coming soon.",
+  },
   {
     name: "Song Prep",
     description: "Paste a ChordPro file, pick your transforms, get clean lyrics ready for Proclaim or any worship display.",
@@ -50,18 +54,25 @@ const tools = [
                   <p class="text-sm text-zinc-500 dark:text-zinc-400 mt-1 leading-relaxed">{project.data.description}</p>
                 </div>
                 <div class="shrink-0 flex flex-col items-end gap-2 pt-0.5">
-                  {project.data.url && (
-                    <a href={project.data.url} target="_blank" rel="noopener noreferrer" class="flex items-center gap-1 text-xs font-medium border border-sky-200 bg-sky-50 text-sky-600 hover:bg-sky-100 dark:border-sky-900/60 dark:bg-sky-950/20 dark:text-sky-400 dark:hover:bg-sky-950/40 px-2.5 py-1 rounded-full transition-colors">
+                  {project.data.url && project.data.status === 'live' && (
+                    <a href={project.data.url} target="_blank" rel="noopener noreferrer" class="flex items-center gap-1 text-xs font-medium border border-emerald-200 bg-emerald-50 text-emerald-600 hover:bg-emerald-100 dark:border-emerald-900/60 dark:bg-emerald-950/20 dark:text-emerald-400 dark:hover:bg-emerald-950/40 px-2.5 py-1 rounded-full transition-colors">
                       Live ↗
+                    </a>
+                  )}
+                  {project.data.url && project.data.status === 'alpha' && (
+                    <a href={project.data.url} target="_blank" rel="noopener noreferrer" class="flex items-center gap-1 text-xs font-medium border border-violet-200 bg-violet-50 text-violet-600 hover:bg-violet-100 dark:border-violet-900/60 dark:bg-violet-950/20 dark:text-violet-400 dark:hover:bg-violet-950/40 px-2.5 py-1 rounded-full transition-colors">
+                      Alpha ↗
                     </a>
                   )}
                   {!project.data.url && project.data.status !== 'live' && (
                     <span class={`text-xs px-2 py-0.5 rounded-full border font-medium ${
-                      project.data.status === 'wip'
+                      project.data.status === 'alpha'
+                        ? 'bg-violet-50 text-violet-600 border-violet-200 dark:bg-violet-950/30 dark:text-violet-400 dark:border-violet-900/50'
+                        : project.data.status === 'wip'
                         ? 'bg-amber-50 text-amber-600 border-amber-200 dark:bg-amber-950/30 dark:text-amber-400 dark:border-amber-900/50'
                         : 'bg-zinc-100 text-zinc-500 border-zinc-200 dark:bg-zinc-800 dark:text-zinc-400 dark:border-zinc-700'
                     }`}>
-                      {project.data.status === 'wip' ? 'In progress' : 'Private'}
+                      {project.data.status === 'alpha' ? 'Alpha' : project.data.status === 'wip' ? 'In progress' : 'Private'}
                     </span>
                   )}
                 </div>

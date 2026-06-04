@@ -9,7 +9,7 @@ const projects = defineCollection({
     tech: z.array(z.string()),
     url: z.string().optional(),
     repo: z.string().optional(),
-    status: z.enum(['live', 'wip', 'private']).default('wip'),
+    status: z.enum(['live', 'alpha', 'wip', 'private']).default('wip'),
     order: z.number().default(99),
     images: z.array(z.string()).default([]),
     overview: z.string(),
